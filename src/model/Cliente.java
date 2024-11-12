@@ -8,14 +8,14 @@ import java.util.Objects;
 public class Cliente extends Pessoa {
 
     // Atributos
-    private Long id; // Identificador
-    private Boolean fidelidade; // Obrigatório
-    private String observacao; // Opcional
+    private Long id; // Identificador do cliente
+    private Boolean fidelidade; // Indica se o cliente é fiel (obrigatório)
+    private String observacao; // Comentários adicionais (opcional)
 
-    // Construtor vazio
+    // Construtor vazio (não faz nada)
     public Cliente(long id, String nomeCompleto, LocalDate dataNascimento, String documento, String pais, String estado, String cidade, boolean fidelidade, String observacao) {}
 
-    // Construtor sem o id
+    // Construtor sem o atributo 'id'
     public Cliente(
             String nomeCompleto,
             LocalDate dataNascimento,
@@ -26,31 +26,31 @@ public class Cliente extends Pessoa {
             Boolean fidelidade,
             String observacao
     ) {
+        // Chama o construtor da classe 'Pessoa' para inicializar os atributos comuns
         super(nomeCompleto, dataNascimento, documento, pais, estado, cidade);
         this.fidelidade = fidelidade;
         this.observacao = observacao;
     }
 
-    // Construtor com todos os atributos
+    // Construtor com todos os atributos, incluindo 'id' e 'idPessoa'
     public Cliente(
-        Long id,
-        String nomeCompleto,
-        LocalDate dataNascimento,
-        String documento,
-        String pais,
-        String estado,
-        String cidade,
-        Long idPessoa,
-        Boolean fidelidade,
-        String observacao)
-    {
+            Long id,
+            String nomeCompleto,
+            LocalDate dataNascimento,
+            String documento,
+            String pais,
+            String estado,
+            String cidade,
+            Long idPessoa,
+            Boolean fidelidade,
+            String observacao
+    ) {
+        // Chama o construtor da classe 'Pessoa' para inicializar os atributos comuns
         super(idPessoa, nomeCompleto, dataNascimento, documento, pais, estado, cidade);
         this.id = id;
         this.fidelidade = fidelidade;
         this.observacao = observacao;
     }
-
-
 
     // Getters e Setters
 
@@ -59,6 +59,7 @@ public class Cliente extends Pessoa {
         return id;
     }
 
+    // Retorna o 'idPessoa' da classe pai (Pessoa)
     public Long getIdPessoa() {
         return super.getId();
     }
@@ -68,6 +69,7 @@ public class Cliente extends Pessoa {
         this.id = id;
     }
 
+    // Define o 'idPessoa' na classe pai (Pessoa)
     public void setIdPessoa(Long idPessoa) {
         super.setId(idPessoa);
     }
@@ -88,21 +90,21 @@ public class Cliente extends Pessoa {
         this.observacao = observacao;
     }
 
-    // Outros métodos
-
+    // Método que retorna uma representação em texto do cliente
     @Override
     public String toString() {
         return "Id: " + id +
-            " | Nome completo: " + super.getNomeCompleto() +
-            " | Data de nascimento: " + Util.formatarDataBR(super.getDataNascimento()) +
-            " | Documento: " + super.getDocumento() +
-            " | País: " + super.getPais() +
-            " | Estado: " + super.getEstado() +
-            " | Cidade: " + super.getCidade() +
-            " | Fidelidade: " + ((fidelidade) ? "Sim" : "Não") +
-            " | Observação: " + observacao;
+                "\n | Nome completo: " + super.getNomeCompleto() +
+                "\n | Data de nascimento: " + Util.formatarDataBR(super.getDataNascimento()) +
+                "\n | Documento: " + super.getDocumento() +
+                "\n | País: " + super.getPais() +
+                "\n | Estado: " + super.getEstado() +
+                "\n | Cidade: " + super.getCidade() +
+                "\n | Fidelidade: " + ((fidelidade) ? "Sim" : "Não") +
+                "\n | Observação: " + observacao + "\n\n";
     }
 
+    // Método para comparar se dois objetos 'Cliente' são iguais
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -111,9 +113,11 @@ public class Cliente extends Pessoa {
 
         Cliente cliente = (Cliente) o;
 
+        // Verifica se os IDs são iguais
         return Objects.equals(id, cliente.id);
     }
 
+    // Método para gerar o código hash do objeto 'Cliente'
     @Override
     public int hashCode() {
         int result = super.hashCode();
