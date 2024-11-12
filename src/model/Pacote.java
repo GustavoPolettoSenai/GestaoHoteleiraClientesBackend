@@ -5,7 +5,6 @@ import util.Util;
 import java.util.Objects;
 
 public class Pacote {
-Jorge e Matheus pior banda
     // Atributos
     private Long id; // Identificador
     private String nome; // Obrigatório
